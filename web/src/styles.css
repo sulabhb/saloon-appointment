@@ -1,0 +1,105 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/instrument-sans";
+
+/*
+ * Design tokens, shared in spirit with the Android app (core/design/Theme.kt): warm neutrals,
+ * near-black ink, one sage accent used sparingly. Colour marks actions and status and is never
+ * the only signal.
+ */
+@theme {
+  --color-canvas: #f7f5f2;
+  --color-surface: #ffffff;
+  --color-sunken: #f2efea;
+  --color-ink: #1f1d1a;
+  --color-muted: #6b655e;
+  --color-subtle: #8f8880;
+  --color-line: #e8e3dc;
+  --color-line-strong: #d9d2c8;
+  --color-accent: #4f6f5c;
+  --color-accent-strong: #3f5a4a;
+  --color-accent-soft: #e7efea;
+  --color-on-accent: #ffffff;
+  --color-danger: #b42318;
+  --color-danger-soft: #fdecea;
+  --color-success: #2f7a4f;
+  --color-success-soft: #e6f2ea;
+  --color-warning: #8a5d00;
+  --color-warning-soft: #fbf1dc;
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Public booking pages: their own face, so they never look like the staff console. */
+  --font-booking: "Instrument Sans Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  --shadow-card: 0 1px 2px rgb(31 29 26 / 0.04), 0 1px 3px rgb(31 29 26 / 0.05);
+  --shadow-overlay: 0 24px 48px -12px rgb(31 29 26 / 0.25);
+
+  --animate-slide-in: slide-in 180ms ease-out;
+  --animate-fade-in: fade-in 150ms ease-out;
+
+  @keyframes slide-in {
+    from { transform: translateX(24px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-canvas: #121110;
+    --color-surface: #1b1a18;
+    --color-sunken: #242220;
+    --color-ink: #eeeae4;
+    --color-muted: #a8a198;
+    --color-subtle: #827b73;
+    --color-line: #2e2b28;
+    --color-line-strong: #3b3834;
+    --color-accent: #8fb59d;
+    --color-accent-strong: #a9cbb5;
+    --color-accent-soft: #1e2b23;
+    --color-on-accent: #0f1f15;
+    --color-danger: #f97066;
+    --color-danger-soft: #3a1a17;
+    --color-success: #6cc291;
+    --color-success-soft: #17271d;
+    --color-warning: #e8b04a;
+    --color-warning-soft: #2e2414;
+    --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3);
+    --shadow-overlay: 0 24px 48px -12px rgb(0 0 0 / 0.6);
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-canvas text-ink font-sans text-[15px] leading-6 antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+  /* ui-skills baseline: balanced headings, no orphans in body text. */
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent;
+  }
+  input[type="time"]::-webkit-calendar-picker-indicator,
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    @apply opacity-60;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

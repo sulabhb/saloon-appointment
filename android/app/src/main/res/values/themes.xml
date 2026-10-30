@@ -1,0 +1,8 @@
+<resources>
+    <!-- Window theme only; all UI is themed in Compose (core/design/Theme.kt). -->
+    <style name="Theme.Salon" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/window_background</item>
+    </style>
+
+    <color name="window_background">#FAF7F2</color>
+</resources>

@@ -1,0 +1,28 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "web",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd web && PATH=$HOME/.nvm/versions/node/v22.15.0/bin:$PATH npm run dev -- --strictPort"
+      ],
+      "port": 5173
+    },
+    {
+      "name": "mail-outbox",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8099",
+        "--bind",
+        "127.0.0.1",
+        "--directory",
+        "backend/build/outbox"
+      ],
+      "port": 8099
+    }
+  ]
+}

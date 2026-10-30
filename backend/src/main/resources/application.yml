@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: salon-backend
+  threads:
+    virtual:
+      enabled: true
+  datasource:
+    # Runtime role: not the table owner and no BYPASSRLS, so row-level security applies.
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/salon}
+    username: ${DB_APP_USER:salon_app}
+    password: ${DB_APP_PASSWORD:salon_app}
+    hikari:
+      # Must stay true: tenant settings are applied per connection checkout and must not be
+      # undone by a rolled-back transaction (see TenantAwareDataSource).
+      auto-commit: true
+  flyway:
+    # Migrations run as the owner role, which creates tables and policies.
+    user: ${DB_OWNER_USER:salon_owner}
+    password: ${DB_OWNER_PASSWORD:salon_owner}
+    placeholders:
+      app_role: ${DB_APP_USER:salon_app}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+salon:
+  notifications:
+    # file: emails are written to build/outbox (local development). Production sets smtp and spring.mail.*.
+    delivery: ${SALON_NOTIFICATIONS_DELIVERY:file}
+    # Management links in emails open the booking site.
+    link-base-url: ${salon.auth.app-base-url:http://localhost:8080}

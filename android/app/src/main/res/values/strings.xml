@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Salon Booking</string>
+
+    <string name="home_title">Book your next appointment</string>
+    <string name="home_subtitle">Enter the salon code your salon gave you, or open their booking link on this phone.</string>
+    <string name="home_code_label">Salon code</string>
+    <string name="home_code_invalid">Salon codes use 3–50 letters, numbers or dashes.</string>
+    <string name="home_open">Open salon</string>
+
+    <string name="salon_branches">Choose a branch</string>
+    <string name="salon_no_branches">This salon has no branches open for online booking yet.</string>
+    <string name="salon_not_found">We couldn\'t find a salon with the code “%1$s”. Check the code and try again.</string>
+    <string name="salon_unavailable">Online booking for this salon is currently unavailable. Please contact the salon.</string>
+    <string name="salon_network_error">We couldn\'t reach the booking service. Check your connection and try again.</string>
+    <string name="retry">Try again</string>
+    <string name="back">Back</string>
+</resources>
